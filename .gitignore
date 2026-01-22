@@ -1,0 +1,29 @@
+# Logs
+*.log
+
+# Backup files
+*.bak
+*.backup
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Git files
+.git/
+.gitattributes
+
+# Build artifacts
+*.zip
+*.rar
+*.7z
+
+# Temporary files
+*.tmp
+*~

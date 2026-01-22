@@ -1,0 +1,478 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PA-AckisRecipeList - Documentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent-gold: #f0b132;
+            --accent-blue: #58a6ff;
+            --accent-purple: #a371f7;
+            --accent-green: #3fb950;
+            --accent-orange: #d29922;
+            --border-color: #30363d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #1a1625 0%, #0d1117 50%, #1a1f35 100%);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center top, rgba(240, 177, 50, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .badge.version {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .badge.wow {
+            border-color: var(--accent-orange);
+            color: var(--accent-orange);
+        }
+
+        .badge.platform {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background: #d29922;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 28px;
+            background: var(--accent-gold);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.2s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-3px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--accent-blue);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .commands-list {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .command-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .command-item:last-child {
+            border-bottom: none;
+        }
+
+        .command-code {
+            font-family: 'Fira Code', monospace;
+            background: var(--bg-tertiary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            color: var(--accent-green);
+            font-size: 0.9rem;
+            min-width: 200px;
+        }
+
+        .command-desc {
+            color: var(--text-secondary);
+        }
+
+        .professions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .profession-tag {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 18px;
+            text-align: center;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .profession-tag:hover {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .changelog {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .changelog h3 {
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+        }
+
+        .changelog ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .changelog li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .changelog li:last-child {
+            border-bottom: none;
+        }
+
+        .changelog li::before {
+            content: '✓';
+            color: var(--accent-green);
+            margin-right: 10px;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .support-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .support-link {
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .support-link.patreon {
+            background: #ff424d;
+            color: white;
+        }
+
+        .support-link.paypal {
+            background: #0070ba;
+            color: white;
+        }
+
+        .support-link:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <h1>PA-AckisRecipeList</h1>
+        <p class="subtitle">Comprehensive Recipe Tracking for All Tradeskills on Project Ascension</p>
+
+        <div class="badges">
+            <span class="badge version">v2.01</span>
+            <span class="badge wow">WoW 3.3.5a</span>
+            <span class="badge platform">Project Ascension</span>
+        </div>
+
+        <div class="cta-buttons">
+            <a href="https://github.com/Xurkon/PA-AckisRecipeList/releases/latest" class="btn btn-primary">
+                ⬇️ Download
+            </a>
+            <a href="https://github.com/Xurkon/PA-AckisRecipeList" class="btn btn-secondary">
+                📂 View on GitHub
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>📋 Complete Database</h3>
+                    <p>Scan your tradeskills and discover every missing recipe with detailed acquisition information for
+                        all professions.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🗺️ Map Integration</h3>
+                    <p>Automatic TomTom waypoint integration. Click any acquisition source to set a waypoint and
+                        navigate directly to it.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔍 Advanced Filters</h3>
+                    <p>Filter by acquisition method, item type, quality, binding, reputation requirements, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>💡 Smart Tooltips</h3>
+                    <p>Hover over NPCs to see which recipes they teach, sell, or drop. Works for trainers, vendors, and
+                        mobs.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>📊 Specialties</h3>
+                    <p>Full support for profession specializations including Alchemy, Blacksmithing, Engineering,
+                        Leatherworking, and Tailoring.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🔄 Alt-Friendly</h3>
+                    <p>Track recipes across all your characters. See what your alts know when planning your next craft.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Slash Commands</h2>
+            <div class="commands-list">
+                <div class="command-item">
+                    <span class="command-code">/arl</span>
+                    <span class="command-desc">Open the AckisRecipeList main window</span>
+                </div>
+                <div class="command-item">
+                    <span class="command-code">/ackisrecipelist</span>
+                    <span class="command-desc">Alternative command to open the main window</span>
+                </div>
+                <div class="command-item">
+                    <span class="command-code">Shift + Click Scan</span>
+                    <span class="command-desc">Force rescan of current profession</span>
+                </div>
+                <div class="command-item">
+                    <span class="command-code">Alt + Click Scan</span>
+                    <span class="command-desc">Clear all TomTom waypoints</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Supported Professions</h2>
+            <div class="professions-grid">
+                <div class="profession-tag">Alchemy</div>
+                <div class="profession-tag">Blacksmithing</div>
+                <div class="profession-tag">Cooking</div>
+                <div class="profession-tag">Enchanting</div>
+                <div class="profession-tag">Engineering</div>
+                <div class="profession-tag">First Aid</div>
+                <div class="profession-tag">Jewelcrafting</div>
+                <div class="profession-tag">Leatherworking</div>
+                <div class="profession-tag">Inscription</div>
+                <div class="profession-tag">Tailoring</div>
+                <div class="profession-tag">Runeforging</div>
+                <div class="profession-tag">Smelting</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Latest Changes</h2>
+            <div class="changelog">
+                <h3>v2.01 - Initial PA Release</h3>
+                <ul>
+                    <li>Created GitHub repository for Project Ascension version</li>
+                    <li>Added comprehensive README.md with badges and feature list</li>
+                    <li>Added modern documentation page with GitHub Pages support</li>
+                    <li>Verified compatibility with Project Ascension 3.3.5a</li>
+                    <li>Updated documentation structure to match modern standards</li>
+                </ul>
+
+                <h3 style="margin-top: 20px;">Original Features</h3>
+                <ul>
+                    <li>Complete recipe database for all tradeskills</li>
+                    <li>Advanced filtering system (acquisition, quality, binding, reputation)</li>
+                    <li>Integrated TomTom waypoint support</li>
+                    <li>Smart NPC tooltips showing available recipes</li>
+                    <li>Alt-friendly recipe tracking</li>
+                    <li>Profession specialty support</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Original Development by <a href="http://www.wowace.com/addons/arl/">Torhal, Pompachomp, Ackis, Zhinjio,
+                Jim-Bim</a></p>
+        <p>Project Ascension Port by <a href="https://github.com/Xurkon">Xurkon</a></p>
+
+        <div class="support-links">
+            <a href="https://www.patreon.com/Xurkon" class="support-link patreon">❤️ Patreon</a>
+            <a href="https://www.paypal.com/donate?business=kancerous@gmail.com" class="support-link paypal">💙
+                PayPal</a>
+        </div>
+    </footer>
+</body>
+
+</html>
