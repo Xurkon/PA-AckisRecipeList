@@ -105,4 +105,4 @@ See [CHANGELOG.md](CHANGELOG.md) for full version history.
 
 ## 📄 License
 
-All Rights Reserved - See [LICENSE.txt](LICENSE.txt) for details.
+MIT License - See [LICENSE](LICENSE) for details.
