@@ -106,5 +106,3 @@ See [CHANGELOG.md](CHANGELOG.md) for full version history.
 ## 📄 License
 
 MIT License - See [LICENSE](LICENSE) for details.
-
-<!-- relay-test-1777859602 -->
